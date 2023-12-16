@@ -23,7 +23,7 @@ class GameController extends Controller implements GameControllerInterface {
     /**
      * @OA\Get(
      *     path="/api/game/browse",
-     *     tags={"Game"},
+     *     tags={"Games"},
      *     @OA\Response(response="200", description="Endpoint used to get all games")
      * )
      */
@@ -34,8 +34,8 @@ class GameController extends Controller implements GameControllerInterface {
 
     /**
      * @OA\Post(
-     *     path="/api/game",
-     *     tags={"Game"},
+     *     path="/api/games",
+     *     tags={"Games"},
      *     @OA\Response(response="200", description="Endpoint to create game")
      * )
      */
@@ -50,10 +50,15 @@ class GameController extends Controller implements GameControllerInterface {
     }
 
     /**
-     * @OA\Post(
-     *     path="/api/game/{id}",
-     *     tags={"Game"},
-     *     @OA\Response(response="200", description="Endpoint to create game")
+     * @OA\Get(
+     *     path="/api/games/{id}",
+     *     tags={"Games"},
+     *  @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="Id of the game to update",
+     *     required=true),
+     *  @OA\Response(response="200", description="Endpoint to create game")
      * )
      */
     public function read(Request $request, int $id): JsonResponse {
@@ -63,9 +68,15 @@ class GameController extends Controller implements GameControllerInterface {
 
     /**
      * @OA\Put(
-     *     path="/api/game/{id}",
-     *     tags={"Game"},
-     *     @OA\Response(response="200", description="Endpoint to update a game")
+     *     path="/api/games/{id}",
+     *     tags={"Games"},
+     * @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id of the game to update",
+     *         required=true,
+     *      ),
+     * @OA\Response(response="200", description="Endpoint to update a game")
      * )
      */
     public function update(Request $request, int $id): JsonResponse {
@@ -83,10 +94,10 @@ class GameController extends Controller implements GameControllerInterface {
         return response()->json($result, Response::HTTP_OK);
     }
 
-        /**
+    /**
      * @OA\Delete(
-     *     path="/api/game/{id}",
-     *     tags={"Game"},
+     *     path="/api/games/{id}",
+     *     tags={"Games"},
      *     @OA\Response(response="200", description="Endpoint to delete a game")
      * )
      */
@@ -96,9 +107,9 @@ class GameController extends Controller implements GameControllerInterface {
         if ($game->user_id != $user_id) {
             return response('You are not allowed to update this game', 403);
         }
-        
+
         $deleted = $this->gameService->delete($request->id);
         $result->deleted = $deleted;
-        return response()->json($result,Response::HTTP_OK);
+        return response()->json($result, Response::HTTP_OK);
     }
 }

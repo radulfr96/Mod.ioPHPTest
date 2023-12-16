@@ -15,12 +15,76 @@
         "/api/game/browse": {
             "get": {
                 "tags": [
-                    "Game"
+                    "Games"
                 ],
                 "operationId": "b689ab56e4682392ddabccc7f47da119",
                 "responses": {
                     "200": {
-                        "description": "An example endpoint"
+                        "description": "Endpoint used to get all games"
+                    }
+                }
+            }
+        },
+        "/api/games": {
+            "post": {
+                "tags": [
+                    "Games"
+                ],
+                "operationId": "3ffe355d95a4aa236ad69be4f965e3e9",
+                "responses": {
+                    "200": {
+                        "description": "Endpoint to create game"
+                    }
+                }
+            }
+        },
+        "/api/games/{id}": {
+            "get": {
+                "tags": [
+                    "Games"
+                ],
+                "operationId": "817a9e06bf9267e01d891e5c1a9b214a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the game to update",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Endpoint to create game"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Games"
+                ],
+                "operationId": "7a7a51e92437ab9405a4bd9153eacec7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the game to update",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Endpoint to update a game"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Games"
+                ],
+                "operationId": "7974f287f717b4f2b1b42c56f08f5d68",
+                "responses": {
+                    "200": {
+                        "description": "Endpoint to delete a game"
                     }
                 }
             }
