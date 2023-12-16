@@ -7,6 +7,7 @@ use App\Services\GameService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 /*
  * @OA\
@@ -27,8 +28,9 @@ class GameController extends Controller implements GameControllerInterface {
      *     @OA\Response(response="200", description="Endpoint used to get all games")
      * )
      */
-    public function browse(Request $request): JsonResponse {
-        $games = $this->gameService->getAllGames($request->currentPage);
+    public function browse(int $page = 1): JsonResponse {
+        Log::debug('Received currentPage value of: {page}', [$page]);
+        $games = $this->gameService->getAllGames($page);
         return response()->json($games, Response::HTTP_OK);
     }
 
@@ -101,12 +103,14 @@ class GameController extends Controller implements GameControllerInterface {
      *     @OA\Response(response="200", description="Endpoint to delete a game")
      * )
      */
-    public function delete(Request $request, $id): JsonResponse {
+    public function delete(Request $request, int $id): JsonResponse {
         $user_id = $this->GetUserId($request);
         $game = $this->gameService->getGameById($id);
 
         if (!$game) {
-            $result = new class {};
+            $result = new class {
+                
+            };
             $result->deleted = true;
             return response()->json($result, Response::HTTP_OK);
         }
