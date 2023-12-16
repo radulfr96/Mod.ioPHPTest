@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\NotImplementedException;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * GameRepository
@@ -32,7 +33,7 @@ class UserRepository extends BaseRepository
         throw new NotImplementedException('Not implemented');
     }
 
-    public function getAll(): array {
+    public function getAll(int $currentPage = 1): LengthAwarePaginator {
         throw new NotImplementedException('Not implemented');
     }
 

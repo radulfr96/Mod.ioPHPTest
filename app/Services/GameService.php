@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Game;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * GameService
@@ -18,8 +19,8 @@ class GameService {
         
     }
 
-    public function getAllGames(): array {
-        return $this->gameRepo->getAll();
+    public function getAllGames(int $currentPage = 1): LengthAwarePaginator {
+        return $this->gameRepo->getAll($currentPage);
     }
 
     public function createGame(string $name, int $user_id): int {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Contracts;
 
-use App\Models\Game;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -30,7 +29,7 @@ interface GameControllerInterface
     /**
      * Read/view a game.
      *
-     * @param Request $request
+     * @param int $id
      * @return JsonResponse
      */
     public function read(int $id) : JsonResponse;
@@ -39,7 +38,7 @@ interface GameControllerInterface
      * Update a game.
      *
      * @param Request $request
-     * @param Game $game
+     * @param int $id
      * @return JsonResponse
      */
     public function update(Request $request, $id) : JsonResponse;
@@ -48,7 +47,7 @@ interface GameControllerInterface
      * Delete a game.
      *
      * @param Request $request
-     * @param Game $game
+     * @param int $id
      * @return JsonResponse
      */
     public function delete(Request $request, $id) : JsonResponse;

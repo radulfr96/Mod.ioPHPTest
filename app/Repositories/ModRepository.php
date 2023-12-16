@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * GameRepository
@@ -26,7 +27,7 @@ class ModRepository extends BaseRepository
         
     }
 
-    public function getAll(): array {
+    public function getAll(int $currentPage = 1): LengthAwarePaginator  {
         
     }
 

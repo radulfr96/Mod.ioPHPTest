@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * GameRepository
@@ -18,9 +18,10 @@ class GameRepository extends BaseRepository
     {
     }
     
-    public function getAll(): array
+    public function getAll(int $currentPage = 1): LengthAwarePaginator 
     {
-        return Game::all()->toArray();
+        Paginator::setCurrentPage($currentPage);
+        return Game::paginate(5);
     }
     
     public function create(Model $model): int {       

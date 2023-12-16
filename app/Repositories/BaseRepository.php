@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * BaseRepository
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 abstract class BaseRepository
 {
-    abstract public function getAll(): array;
+    abstract public function getAll(int $currentPage = 1): LengthAwarePaginator ;
     abstract public function getById(int $id): ?Model;
     abstract public function create(Model $model): int;
     abstract public function update(Model $model): bool;

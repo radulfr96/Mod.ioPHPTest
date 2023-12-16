@@ -28,7 +28,7 @@ class GameController extends Controller implements GameControllerInterface {
      * )
      */
     public function browse(Request $request): JsonResponse {
-        $games = $this->gameService->getAllGames();
+        $games = $this->gameService->getAllGames($request->currentPage);
         return response()->json($games, Response::HTTP_OK);
     }
 
