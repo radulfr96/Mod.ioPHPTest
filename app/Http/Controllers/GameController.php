@@ -25,7 +25,12 @@ class GameController extends Controller implements GameControllerInterface {
      * @OA\Get(
      *     path="/api/game/browse",
      *     tags={"Games"},
-     *     @OA\Response(response="200", description="Endpoint used to get all games")
+     *     @OA\Response(response="200", description="Endpoint used to get all games"),
+     * @OA\Parameter (
+     *  name="page",
+     *     in="query",
+     *     description="Page of results to return",
+     *     required=false),
      * )
      */
     public function browse(int $page = 1): JsonResponse {

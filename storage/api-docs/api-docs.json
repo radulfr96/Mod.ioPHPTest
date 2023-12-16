@@ -18,6 +18,14 @@
                     "Games"
                 ],
                 "operationId": "b689ab56e4682392ddabccc7f47da119",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page of results to return",
+                        "required": false
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Endpoint used to get all games"
