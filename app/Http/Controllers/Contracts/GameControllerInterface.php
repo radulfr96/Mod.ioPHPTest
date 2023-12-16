@@ -33,7 +33,7 @@ interface GameControllerInterface
      * @param Request $request
      * @return JsonResponse
      */
-    public function read(Request $request, int $id) : JsonResponse;
+    public function read(int $id) : JsonResponse;
 
     /**
      * Update a game.

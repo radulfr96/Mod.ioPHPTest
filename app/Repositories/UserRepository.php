@@ -36,7 +36,7 @@ class UserRepository extends BaseRepository
         throw new NotImplementedException('Not implemented');
     }
 
-    public function getById(int $id): Model {
+    public function getById(int $id): ?Model {
         throw new NotImplementedException('Not implemented');
     }
 

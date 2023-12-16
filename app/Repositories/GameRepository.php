@@ -29,7 +29,7 @@ class GameRepository extends BaseRepository
     }
 
     public function delete(int $id): bool {
-        $gameToDelete = Game::find('id',$id);
+        $gameToDelete = Game::find($id);
         
         if (!$gameToDelete) {
             return true;
@@ -38,7 +38,7 @@ class GameRepository extends BaseRepository
         return $gameToDelete->delete();
     }
 
-    public function getById(int $id): Model {
+    public function getById(int $id): ?Model {
         return Game::where('id', $id)->first();
     }
 

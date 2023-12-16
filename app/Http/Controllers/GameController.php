@@ -61,7 +61,7 @@ class GameController extends Controller implements GameControllerInterface {
      *  @OA\Response(response="200", description="Endpoint to create game")
      * )
      */
-    public function read(Request $request, int $id): JsonResponse {
+    public function read(int $id): JsonResponse {
         $game = $this->gameService->getGameById($id);
         return response()->json($game, Response::HTTP_OK);
     }
@@ -104,12 +104,21 @@ class GameController extends Controller implements GameControllerInterface {
     public function delete(Request $request, $id): JsonResponse {
         $user_id = $this->GetUserId($request);
         $game = $this->gameService->getGameById($id);
+
+        if (!$game) {
+            $result = new class {};
+            $result->deleted = true;
+            return response()->json($result, Response::HTTP_OK);
+        }
+
         if ($game->user_id != $user_id) {
             return response('You are not allowed to update this game', 403);
         }
 
         $deleted = $this->gameService->deleteGame($request->id);
-        $result = new class {};
+        $result = new class {
+            
+        };
         $result->deleted = $deleted;
         return response()->json($result, Response::HTTP_OK);
     }

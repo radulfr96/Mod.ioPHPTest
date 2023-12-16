@@ -30,7 +30,7 @@ class ModRepository extends BaseRepository
         
     }
 
-    public function getById(int $id): Model {
+    public function getById(int $id): ?Model {
         
     }
 

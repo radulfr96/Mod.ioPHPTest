@@ -33,7 +33,7 @@ class GameService {
         return $this->gameRepo->create($game);
     }
 
-    public function getGameById(int $id): Game {
+    public function getGameById(int $id): ?Game {
         return $this->gameRepo->getById($id);
     }
 

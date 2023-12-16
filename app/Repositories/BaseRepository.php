@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 abstract class BaseRepository
 {
     abstract public function getAll(): array;
-    abstract public function getById(int $id): Model;
+    abstract public function getById(int $id): ?Model;
     abstract public function create(Model $model): int;
     abstract public function update(Model $model): bool;
     abstract public function delete(int $id): bool;
