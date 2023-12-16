@@ -8,11 +8,9 @@ use Illuminate\Routing\Controller as BaseController;
 use OpenApi\Attributes as OA;
 
 #[
-    OA\Info(version: "1.0.0", description: "petshop api", title: "Petshop-api Documentation"),
-    OA\Server(url: 'http://localhost:8088', description: "local server"),
-    OA\Server(url: 'http://staging.example.com', description: "staging server"),
-    OA\Server(url: 'http://example.com', description: "production server"),
-    OA\SecurityScheme( securityScheme: 'bearerAuth', type: "http", name: "Authorization", in: "header", scheme: "bearer"),
+    OA\Info(version: "1.0.0", description: "modio test api", title: "Mod.io Test API Documentation"),
+    OA\Server(url: 'http://localhost:8000', description: "local server"),
+    OA\SecurityScheme( securityScheme: 'ApiKeyAuth', type: "apiKey", name: "Authorization", in: "header", scheme: "ApiKeyAuth"),
 ]
 
 class Controller extends BaseController
