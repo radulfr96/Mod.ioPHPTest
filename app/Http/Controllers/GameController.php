@@ -29,7 +29,7 @@ class GameController extends Controller implements GameControllerInterface {
      */
     public function browse(Request $request): JsonResponse {
         $games = $this->gameService->getAllGames();
-        return response()->json($games, 200);
+        return response()->json($games, Response::HTTP_OK);
     }
 
     /**
@@ -46,31 +46,31 @@ class GameController extends Controller implements GameControllerInterface {
             
         };
         $result->id = $gameId;
-        return response()->json($result, 200);
+        return response()->json($result, Response::HTTP_OK);
     }
 
     /**
      * @OA\Post(
-     *     path="/api/game",
+     *     path="/api/game/{id}",
      *     tags={"Game"},
      *     @OA\Response(response="200", description="Endpoint to create game")
      * )
      */
-    public function read(Request $request): JsonResponse {
-        $game = $this->gameService->getGameById($request->id);
-        return response()->json($game, 200);
+    public function read(Request $request, int $id): JsonResponse {
+        $game = $this->gameService->getGameById($id);
+        return response()->json($game, Response::HTTP_CREATED);
     }
 
     /**
      * @OA\Put(
-     *     path="/api/game",
+     *     path="/api/game/{id}",
      *     tags={"Game"},
      *     @OA\Response(response="200", description="Endpoint to update a game")
      * )
      */
-    public function update(Request $request): JsonResponse {
+    public function update(Request $request, int $id): JsonResponse {
         $user_id = $this->GetUserId($request);
-        $game = $this->gameService->getGameById($request->id);
+        $game = $this->gameService->getGameById($id);
         if ($game->user_id != $user_id) {
             return response('You are not allowed to update this game', 403);
         }
@@ -80,25 +80,25 @@ class GameController extends Controller implements GameControllerInterface {
             
         };
         $result->updated = $updated;
-        return response()->json($result, 200);
+        return response()->json($result, Response::HTTP_OK);
     }
 
         /**
      * @OA\Delete(
-     *     path="/api/game",
+     *     path="/api/game/{id}",
      *     tags={"Game"},
      *     @OA\Response(response="200", description="Endpoint to delete a game")
      * )
      */
-    public function delete(Request $request): JsonResponse {
+    public function delete(Request $request, int $id): JsonResponse {
         $user_id = $this->GetUserId($request);
-        $game = $this->gameService->getGameById($request->id);
+        $game = $this->gameService->getGameById($id);
         if ($game->user_id != $user_id) {
             return response('You are not allowed to update this game', 403);
         }
         
-        $deleted = $this->gameService->delete($id);
+        $deleted = $this->gameService->delete($request->id);
         $result->deleted = $deleted;
-        return response()->json($result,200);
+        return response()->json($result,Response::HTTP_OK);
     }
 }
