@@ -42,7 +42,7 @@ interface GameControllerInterface
      * @param Game $game
      * @return JsonResponse
      */
-    public function update(Request $request, int $id) : JsonResponse;
+    public function update(Request $request, $id) : JsonResponse;
 
     /**
      * Delete a game.
@@ -51,5 +51,5 @@ interface GameControllerInterface
      * @param Game $game
      * @return JsonResponse
      */
-    public function delete(Request $request, int $id) : JsonResponse;
+    public function delete(Request $request, $id) : JsonResponse;
 }

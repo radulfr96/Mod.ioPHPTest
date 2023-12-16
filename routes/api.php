@@ -22,4 +22,4 @@ Route::put('/games/{id}', [GameController::class, 'update'])->middleware('auth:s
 
 Route::get('/games/{id}', [GameController::class, 'read'])->middleware('auth:sanctum');
 
-Route::delete('/games/{id}', [GameController::class, 'delete'])->name('games')->middleware('auth:sanctum');
+Route::delete('/games/{id}', [GameController::class, 'delete'])->middleware('auth:sanctum');

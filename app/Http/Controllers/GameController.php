@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Contracts\GameControllerInterface;
-use App\Models\Game;
 use App\Services\GameService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /*
  * @OA\
@@ -46,7 +46,7 @@ class GameController extends Controller implements GameControllerInterface {
             
         };
         $result->id = $gameId;
-        return response()->json($result, Response::HTTP_OK);
+        return response()->json($result, Response::HTTP_CREATED);
     }
 
     /**
@@ -63,7 +63,7 @@ class GameController extends Controller implements GameControllerInterface {
      */
     public function read(Request $request, int $id): JsonResponse {
         $game = $this->gameService->getGameById($id);
-        return response()->json($game, Response::HTTP_CREATED);
+        return response()->json($game, Response::HTTP_OK);
     }
 
     /**
@@ -79,7 +79,7 @@ class GameController extends Controller implements GameControllerInterface {
      * @OA\Response(response="200", description="Endpoint to update a game")
      * )
      */
-    public function update(Request $request, int $id): JsonResponse {
+    public function update(Request $request, $id): JsonResponse {
         $user_id = $this->GetUserId($request);
         $game = $this->gameService->getGameById($id);
         if ($game->user_id != $user_id) {
@@ -101,14 +101,15 @@ class GameController extends Controller implements GameControllerInterface {
      *     @OA\Response(response="200", description="Endpoint to delete a game")
      * )
      */
-    public function delete(Request $request, int $id): JsonResponse {
+    public function delete(Request $request, $id): JsonResponse {
         $user_id = $this->GetUserId($request);
         $game = $this->gameService->getGameById($id);
         if ($game->user_id != $user_id) {
             return response('You are not allowed to update this game', 403);
         }
 
-        $deleted = $this->gameService->delete($request->id);
+        $deleted = $this->gameService->deleteGame($request->id);
+        $result = new class {};
         $result->deleted = $deleted;
         return response()->json($result, Response::HTTP_OK);
     }

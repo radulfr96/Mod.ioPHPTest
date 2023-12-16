@@ -44,7 +44,6 @@ class GameService {
     }
 
     public function deleteGame(int $id): bool {
-        $game = $this->getGameById($id);
-        return $this->gameRepo->delete($game);
+        return $this->gameRepo->delete($id);
     }
 }
