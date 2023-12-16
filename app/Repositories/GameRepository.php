@@ -2,6 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\Game;
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * GameRepository
  *
@@ -9,10 +12,29 @@ namespace App\Repositories;
  *   for solely dealing with the database
  */
 class GameRepository extends BaseRepository
-{
-    private GameRepository $gameRepo;
-
-    public function __construct(GameRepository $gameRepo)
+{    
+    function __construct()
     {
+    }
+    
+    public function getAll(): array
+    {
+        return Game::all()->toArray();
+    }
+    
+    public function create(Model $model): int {
+        
+    }
+
+    public function delete(int $id) {
+        
+    }
+
+    public function getById(int $id): Model {
+        
+    }
+
+    public function updated(Model $model): bool {
+        
     }
 }

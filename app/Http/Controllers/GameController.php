@@ -8,25 +8,29 @@ use App\Services\GameService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/*
+ * @OA\
+ */
 class GameController extends Controller implements GameControllerInterface
 {
     private GameService $gameService;
-    
 
     public function __construct(GameService $gameService)
     {
+        $this->gameService = $gameService;
     }
 
     /**
      * @OA\Get(
      *     path="/api/game/browse",
+     *     tags={"Game"},
      *     @OA\Response(response="200", description="An example endpoint")
      * )
      */
     public function browse(Request $request): JsonResponse
     {
-        return response()->json(['Name' => 'Uncharted'], 200);
-        // TODO: Implement browse() method.
+        $games = $this->gameService->GetAllGames();
+        return response()->json($games, 200);
     }
 
     public function create(Request $request): JsonResponse

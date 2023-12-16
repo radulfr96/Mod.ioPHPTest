@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * GameRepository
  *
@@ -14,5 +16,25 @@ class ModRepository extends BaseRepository
 
     public function __construct(ModRepository $modRepo)
     {
+    }
+
+    public function create(Model $model): int {
+        
+    }
+
+    public function delete(int $id) {
+        
+    }
+
+    public function getAll(): array {
+        
+    }
+
+    public function getById(int $id): Model {
+        
+    }
+
+    public function updated(Model $model): bool {
+        
     }
 }

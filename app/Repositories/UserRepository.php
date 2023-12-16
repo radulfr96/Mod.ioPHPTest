@@ -3,7 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\NotImplementedException;
 
 /**
  * GameRepository
@@ -21,5 +22,25 @@ class UserRepository extends BaseRepository
     {
         return User::where('api_key', $apiKey)
                 ->first();
+    }
+
+    public function create(Model $model): int {
+        throw new NotImplementedException('Not implemented');
+    }
+
+    public function delete(int $id) {
+        throw new NotImplementedException('Not implemented');
+    }
+
+    public function getAll(): array {
+        throw new NotImplementedException('Not implemented');
+    }
+
+    public function getById(int $id): Model {
+        throw new NotImplementedException('Not implemented');
+    }
+
+    public function updated(Model $model): bool {
+        throw new NotImplementedException('Not implemented');
     }
 }
