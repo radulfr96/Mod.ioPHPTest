@@ -19,7 +19,7 @@ class UserRepository extends BaseRepository
     
     public function getUserByAPIKey(string $apiKey): User
     {
-        return User::where('password', $apiKey)
+        return User::where('api_key', $apiKey)
                 ->first();
     }
 }
