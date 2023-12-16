@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 /**
  * GameRepository
@@ -22,19 +23,20 @@ class GameRepository extends BaseRepository
         return Game::all()->toArray();
     }
     
-    public function create(Model $model): int {
-        
+    public function create(Model $model): int {       
+        $model->save();
+        return $model->id;
     }
 
-    public function delete(int $id) {
-        
+    public function delete(int $id): bool {
+        return Game::where('id',$id)->delete();
     }
 
     public function getById(int $id): Model {
-        
+        return Game::where('id', $id)->first();
     }
 
-    public function updated(Model $model): bool {
-        
+    public function update(Model $model): bool {
+        return $model->save();
     }
 }

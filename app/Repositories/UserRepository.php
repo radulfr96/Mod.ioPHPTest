@@ -28,7 +28,7 @@ class UserRepository extends BaseRepository
         throw new NotImplementedException('Not implemented');
     }
 
-    public function delete(int $id) {
+    public function delete(int $id): bool {
         throw new NotImplementedException('Not implemented');
     }
 
@@ -40,7 +40,7 @@ class UserRepository extends BaseRepository
         throw new NotImplementedException('Not implemented');
     }
 
-    public function updated(Model $model): bool {
+    public function update(Model $model): bool {
         throw new NotImplementedException('Not implemented');
     }
 }

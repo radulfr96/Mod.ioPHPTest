@@ -19,7 +19,7 @@ class Controller extends BaseController {
     use AuthorizesRequests,
         ValidatesRequests;
 
-    protected function GetUserId(Request $request): ?int 
+    protected function getUserId(Request $request): ?int 
     {
         $apiKey = $request->header('Authorization');
         

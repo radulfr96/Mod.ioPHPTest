@@ -14,4 +14,12 @@ use App\Http\Controllers\GameController;
 |
 */
 
-Route::get('game/browse', [GameController::class, 'browse'])->middleware('auth:sanctum');
+Route::get('games/browse', [GameController::class, 'browse'])->middleware('auth:sanctum');
+
+Route::post('games', [GameController::class, 'create'])->middleware('auth:sanctum');
+
+Route::put('games', [GameController::class, 'update'])->middleware('auth:sanctum');
+
+Route::get('games', [GameController::class, 'read'])->middleware('auth:sanctum');
+
+Route::delete('games/{id}', [GameController::class, 'delete'])->middleware('auth:sanctum');

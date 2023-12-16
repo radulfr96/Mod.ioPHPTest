@@ -17,6 +17,12 @@ class DatabaseSeeder extends Seeder {
             'email' => 'wade@example.com',
             'api_key' => 'APIKEYEXAMPLE'
         ]);
+        
+        \App\Models\User::factory()->create([
+            'name' => 'Other Wade Russell',
+            'email' => 'wadeother@example.com',
+            'api_key' => 'APIKEYEXAMPLE2'
+        ]);
 
         \App\Models\Game::factory()->create([
             'name' => 'Uncharted: Drake\'s Fortune',
@@ -25,7 +31,7 @@ class DatabaseSeeder extends Seeder {
 
         \App\Models\Game::factory()->create([
             'name' => 'Uncharted 2: Among Thieves',
-            'user_id' => 1,
+            'user_id' => 2,
         ]);
 
         \App\Models\Game::factory()->create([
@@ -35,7 +41,7 @@ class DatabaseSeeder extends Seeder {
 
         \App\Models\Game::factory()->create([
             'name' => 'Uncharted 4: A Thief\'s End',
-            'user_id' => 1,
+            'user_id' => 2,
         ]);
 
         \App\Models\Game::factory()->create([

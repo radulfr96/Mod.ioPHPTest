@@ -22,7 +22,7 @@ class ModRepository extends BaseRepository
         
     }
 
-    public function delete(int $id) {
+    public function delete(int $id): bool {
         
     }
 
@@ -34,7 +34,7 @@ class ModRepository extends BaseRepository
         
     }
 
-    public function updated(Model $model): bool {
+    public function update(Model $model): bool {
         
     }
 }
